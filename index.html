@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doguito Petshop | Criar conta</title>
+    <title> Cadastro | Criar conta </title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="./assets/css/base/base.css">
@@ -15,8 +15,8 @@
 <body>
     <main class="container flex flex--coluna flex--centro">
         <div class="cadastro-cabecalho">
-            <img src="./assets/img/doguito.svg" alt="Logo Doguito" class="cadastro-cabecalho__logo">
-            <h1 class="cadastro-cabecalho__titulo">PetShop</h1>
+            <img src="img/cadastro-pessoas.png" alt="Logo Doguito" class="cadastro-cabecalho__logo">
+            <h1 class="cadastro-cabecalho__titulo">Cadastre-se</h1>
         </div>
         <section class="cartao">
             <h2 class="cartao__titulo">Complete seu cadastro</h2>
@@ -34,7 +34,7 @@
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
                     <div class="input-container">
-                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha" required>
+                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha" minlength="6" required>
                         <label class="input-label" for="senha">Senha</label>
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
