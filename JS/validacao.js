@@ -1,8 +1,20 @@
-const dataNascimento = document.querySelector('#nascimento');
+/*const dataNascimento = document.querySelector('#nascimento');
 
 dataNascimento.addEventListener('blur', (evento) => {
   validaDataNascimento(evento.target);
-})
+})*/
+
+export function valida(input) {
+  const tipoDeInput = input.dataset.tipo;
+
+  if(validadores[tipoDeInput]) {
+    validadores[tipoDeInput](input);
+  }
+}
+
+const validadores = {
+  dataNascimento : input => validaDataNascimento(input)
+}
 
 function validaDataNascimento(input){
   const dataRecebida = new Date(input.value);
@@ -47,4 +59,32 @@ Caso a pessoa não seja maior que 18 anos, ela tem que mandar uma mensagem de er
 8.-Dentro do nosso if, se for verdadeiro, ela vai cair nessa condição, e não pode ser. Ela tem que cair na condição quando for falsa. Então, no começo, antes de escrever a função na linha 5, eu coloco uma !. Vai ficar if(!maiorQue18(dataRecebida)), a mensagem vai ser “Você deve ser maior que 18 anos para se cadastrar”. Caso contrário, a mensagem será nula, então o campo está ok.
 Porém, nós não atribuímos essa função a nada ainda, então ela não vai ser chamada para fazer validação. O que nós podemos fazer é colocar um evento dentro do input para que toda vez que ele perca o foco, a função seja chamada.
 
-9.- Primeiro, nós temos que ter o input para poder adicionar esse evento. Então vou criar uma constante, const dataNascimento = document.querySelector(“#nascimento”). E agora, passar um evento, dataNascimento.addEventListener(), o evento vai ser quando nós perdemos foco de campo, então vai ser um evento blur, e aí nós vamos passar uma função. Recebendo um (evento), posso passar uma arrow function, e dentro dessa função anônima, nós vamos passar o validaDataNascimento(evento.target).*/
+9.- Primeiro, nós temos que ter o input para poder adicionar esse evento. Então vou criar uma constante, const dataNascimento = document.querySelector(“#nascimento”). E agora, passar um evento, dataNascimento.addEventListener(), o evento vai ser quando nós perdemos foco de campo, então vai ser um evento blur, e aí nós vamos passar uma função. Recebendo um (evento), posso passar uma arrow function, e dentro dessa função anônima, nós vamos passar o validaDataNascimento(evento.target).
+
+10.- Criaremos função genérica que vai ser chamada para todos os inputs, e aí nós fazemos uma verificação para saber qual é o tipo de input e qual função deve ser chamada dependendo desse tipo de input. Vou colocar, na linha 1, uma function valida(input)
+
+E agora nós temos que saber que tipo de input que é esse.
+
+11.- Então eu vou criar uma const tipoDeInput = input.dataset para poder acessar os data atributes de um input ou de algum elemento, nós precisamos usar o de dataset. E agora qual dos data atributes daquele input nós queremos pegar? Embora nós só tenhamos um, nós temos que deixar explícito qual deles que é. Então vai ser tipo.
+
+12.- Como nós podemos ter vários tipos de input, é interessante criarmos um objeto que vai conter os diversos tipos de validações que nós temos no nosso arquivo de validação. Então, na linha 5, vou criar uma constante chamada validadores, que vai ser um objeto e agora, dependendo do tipo de input, nós temos uma função diferente.
+
+13.- Então, no caso nós temos uma data de nascimento data, DataNascimento: input, nós vamos passar um input e agora vamos fazer uma arrow function => validaDataNascimento(input).
+
+14.- Só que agora, para nós podermos realmente chamar essa função, nós temos que criar uma condição que vai fazer exatamente essa comparação, esse tipo de input está dentro de validadores? Então para isso, nós vamos criar um if dentro da função valida e nós vamos verificar se dentro do validadores nós temos o tipoDeInput.
+
+Se tiver, tudo certo. Então quando nós pegamos esse validadores pegando o tipo de validador certo, com tipoDeInput certo, executando a função passando o input. A função que vai ser chamada, vai ser a função relacionada ao tipoDeInput. Só que essa função não está sendo chamada em nenhum lugar. Vamos deixar genérico para que outras aplicações também consigam utilizar essa função, nós vamos criar um outro arquivo que vai importar essa função de valida. Então antes de criar esse novo arquivo, eu vou exportar essa função valida.
+
+15.- antes de escrever function, eu vou escrever export e agora, salvei o arquivo validação.js, e agora vou criar um novo arquivo dentro da pasta “js”, chamado “app.js”.
+
+E nesse “app.js”, nós vamos importar, usar o import {}, entre as chaves eu vou passar a função que nós queremos importar, que é a valida} from, que é de onde que nós queremos pegar, que é do arquivo ”./validacao.js”.
+
+E nós queremos executar a função valida para todos os inputs, porque dentro do valida nós já fazemos a verificação de qual tipo de input nós estamos recebendo.
+
+Então vou criar uma constante, chamada inputs, no plural, é igual a um document.querySelectorAll, porque agora nós queremos pegar todos os inputs, então querySelectorAll. E como nós não temos restrições para o tipo de input, nós queremos todos os inputs, nós vamos usar o seletor de tag, então só input mesmo.
+
+E agora com esse input, nós vamos fazer um laço de repetição e adicionar um evento de blur, como nós fizemos para data de nascimento para todos os inputs. Então agora, inputs.forEach, então agora para cada input que nós temos, nós vamos chamar pegar o input.addEventListener(‘blur’), e a função passando o evento.
+
+E agora, nós vamos chamar a função valida() passando o evento.target. E agora nós vamos chamar função de valida para cada input que nós temos dentro do nosso formulário.
+
+E dependendo do tipo de input, ele vai executar a função adequada. Por enquanto nós temos para data de nascimento, para os outros inputs nada vai acontecer.*/
