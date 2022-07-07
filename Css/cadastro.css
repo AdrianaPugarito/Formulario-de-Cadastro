@@ -1,3 +1,8 @@
+.cadastro {
+    display: flex;
+    flex-direction: column;
+}
+
 .cadastro-cabecalho {
     display: flex;
     flex-direction: column;
